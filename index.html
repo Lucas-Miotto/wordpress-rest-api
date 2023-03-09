@@ -1,0 +1,49 @@
+<!-- Arquivo html com formulario para envio de imagem. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <title>Enviar imagem</title>
+</head>
+
+<body>
+  <input type="file" multiple>
+  <button>Enviar</button>
+
+  <script>
+    const input = document.querySelector("input");
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", handleClick);
+
+    const options = {
+      headers: {
+        "Authorization": "Bearer TOKEN HERE"
+      }
+    }
+
+    function handleClick() {
+      const files = input.files;
+      const form = new FormData();
+
+      for (let i = 0; i < files.length; i++) {
+        form.append(files[i].name, files[i]);
+      }
+
+      form.append("nome", "Novo macbook com imagem");
+      form.append("descricao", "Macbook com imagem postado via javascript.");
+      form.append("preco", "12344");
+
+      axios.post("http://localhost/....", form, options);
+
+    }
+
+  </script>
+
+</body>
+
+</html>
