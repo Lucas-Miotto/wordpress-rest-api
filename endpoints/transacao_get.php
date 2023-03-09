@@ -1,5 +1,4 @@
 <?php
-// API PRODUTOS
 function api_transacao_get($request)
 {
   $tipo = sanitize_text_field($request['tipo']) ?: 'comprador_id';
